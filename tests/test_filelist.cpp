@@ -14,7 +14,7 @@ int main(){
     vector<int> labels;
     // Dataset::Ptr dset = Dataset::create();
     Cluster cluster(eps,num_pts);
-    cluster.load_file_txt(filelist);
+    cluster.load_file_bin(filelist);
     cluster.normalization();
     cluster.predict();
     cluster.get_labels(labels);

@@ -15,6 +15,7 @@ public:
     ~Cluster(){ }
 
     int load_file_txt(const string& filelist);
+    int load_file_bin(const string& filelist,const int bigEnd=1);
     int normalization();
     int predict();
     int get_labels(vector<int>& labels);

@@ -58,6 +58,35 @@ void Cluster::load_features(){
      dset->load_features(feat_total);
 }
 
+int Cluster::load_file_bin(const string& filelist,const int bigEnd=1){
+    cout<<"file list="<<filelist<<"\n";
+    ifstream fin(filelist);
+    if(!fin){
+        cout<<filelist<<" not exist,exit...\n";
+        return  -1;
+    }
+    string str_name("");
+    const string token(" ");
+    while(getline(fin,str_name)){  
+        ifstream fin2(str_name,std::ios::binary);
+        if(!fin2){
+           cout<<str_name<<" not exist,exit...\n";
+           return -1;
+        }
+        string str_fin2_name("");
+        vector<float> feat;
+        while(getline(fin2,str_fin2_name)){
+            feat.clear();
+            pushToVec(feat,str_fin2_name.c_str(),token); 
+            feat_total.push_back(feat);
+        }
+        fin2.close();
+    }
+    fin.close();
+    load_features();
+
+    return 0;
+}
 
 int Cluster::load_file_txt(const string& filelist){
     cout<<"file list="<<filelist<<"\n";
