@@ -53,9 +53,14 @@ void pushToVec(std::vector<float>&obj,const char *param,const std::string& token
     }  
 }  
 
+void Cluster::load_featues(){
+
+     dset->load_features(feat_total);
+}
+
 
 int Cluster::load_file_txt(const string& filelist){
-    cout<<filelist<<".\n";
+    cout<<"image list="<<filelist<<"\n";
     ifstream fin(filelist);
     if(!fin){
         cout<<filelist<<" not exist,exit...\n";
@@ -79,17 +84,33 @@ int Cluster::load_file_txt(const string& filelist){
         fin2.close();
     }
     fin.close();
+    load_featues();
+
     return 0;
 }
 
 int Cluster::normalization(){
+    dset->L2_normalize();
+    fit();
+    return 0;
+}
 
+void Cluster::fit(){
+    dbs = boost::make_shared<DBSCAN_VP_COSINE>(dset);
+    dbs->fit();
 }
 
 int Cluster::predict(){
-
+    const int num=dbs->predict(eps, num_pts);
+    return num;
 }
 
-int Cluster::get_lables(){
+int Cluster::get_labels(vector<int>& labels){
+    const int print_len = (int) dset->rows();
+    const DBSCAN_VP_COSINE::Labels &l2 = dbs->get_labels();
+    for (size_t i = 0; i < print_len; ++i){
+        labels.push_back((int)l2[i]);
+    }
+    return 0;
 
 }
