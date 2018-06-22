@@ -49,6 +49,30 @@ class Dataset : private boost::noncopyable
             _data.emplace_back(col_vector);
         }
     }
+    void load_feature(const std::vector<float> &data, const size_t label = -1){
+        const int length=data.size();
+        Eigen::VectorXf col_vector(length);
+        for (size_t i = 0; i < length; ++i)
+        {
+            col_vector(i) = data[i];
+        }
+
+        _data.emplace_back(col_vector);
+        _labels.push_back(label);
+        ++m_rows;
+    }
+
+    bool load_features(const std::vector<std::vector<float> >& feat_total,const size_t label = -1){
+        const int feat_file_num=feat_total.size();
+        if(!feat_file_num){
+            std::cout<<"input feature num is null ...\n";
+            return false;
+        }
+        for(const auto& feat:feat_total){
+            load_feature(feat,label);
+        }
+        return true;
+    }
 
     bool load_csv(const std::string &csv_file_path)
     {
@@ -144,18 +168,6 @@ class Dataset : private boost::noncopyable
         return true;
     }
 
-    void push_back(std::vector<float> &data, size_t label = -1)
-    {
-        Eigen::VectorXf col_vector(data.size());
-        for (size_t i = 0; i < data.size(); ++i)
-        {
-            col_vector(i) = data[i];
-        }
-
-        _data.emplace_back(col_vector);
-        _labels.push_back(label);
-        ++m_rows;
-    }
 
     // void pop()
     // {

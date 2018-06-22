@@ -50,7 +50,8 @@ _cu_vertdegree_cosine(int numpts, int colsize, float eps, float *d_data, int *d_
     }
 
     // accum = sqrtf(accum);
-    accum= 1.0f - accum;
+    accum = 1.0f - accum;
+
     if (accum < eps)
     {
       d_Va[i] += 1;

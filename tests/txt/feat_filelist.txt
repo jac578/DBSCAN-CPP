@@ -1,0 +1,9 @@
+../tests/txt/1_1_0.npy.txt
+../tests/txt/1_2_0.npy.txt
+../tests/txt/1_3_0.npy.txt
+../tests/txt/2_1_0.npy.txt
+../tests/txt/2_4_0.npy.txt
+../tests/txt/2_6_0.npy.txt
+../tests/txt/3_1_0.npy.txt
+../tests/txt/3_2_0.npy.txt
+../tests/txt/3_3_0.npy.txt

@@ -52,6 +52,21 @@ ADD_TEST( ${exeName} ${CMAKE_BINARY_DIR}/tests/${exeName} --gtest_output=xml:${C
 set_tests_properties(${exeName} PROPERTIES ENVIRONMENT "GLIBCXX_FORCE_NEW=1")
 ENDFUNCTION( setupNvTests )
 
+
+add_executable(test_filelist  ../nv/cluster.h ../nv/cluster.cpp test_filelist.cpp)
+target_link_libraries(test_filelist ${Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE} glog )
+
+#SET( SOURCES   
+#     ${MAIN_TEST_CPP} 
+#     ../nv/cluster.h
+#     ../nv/cluster.cpp
+#     test_filelist.cpp
+# )
+#SET( LIBRARIES )
+
+#setupTests( "filelist" "${SOURCES}" "${LIBRARIES}" )
+
+
 SET( SOURCES
     ${MAIN_TEST_CPP}
     test_vptree.cpp

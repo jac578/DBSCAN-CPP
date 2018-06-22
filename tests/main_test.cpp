@@ -2,7 +2,6 @@
 #include <ctime>
 
 #include "gtest/gtest.h"
-
 int main( int argc, char** argv )
 {
     std::random_device rd;
