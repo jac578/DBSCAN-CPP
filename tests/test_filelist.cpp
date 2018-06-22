@@ -13,13 +13,13 @@ int main(){
     const int num_pts=2;
     vector<int> labels;
     // Dataset::Ptr dset = Dataset::create();
-    Cluster cluster;
+    Cluster cluster(eps,num_pts);
     cluster.load_file_txt(filelist);
     cluster.normalization();
     cluster.predict();
     cluster.get_labels(labels);
     for(int i=0;i<labels.size();++i){
-        std::cout << "Element = " << i << " cluster = " << l2[i]<<"\n";
+        std::cout << "Element = " << i << " cluster = " << labels[i]<<"\n";
     }
     // dset->load_features(cluster.feat_total);
     // dset->L2_normalize();

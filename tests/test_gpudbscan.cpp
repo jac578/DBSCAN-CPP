@@ -159,7 +159,7 @@ TEST(GDBSCAN, vsDBSCANvp_cosine)
   Dataset::Ptr dset = Dataset::create();
   dset->load_csv(CURRENT_TDIR + "/csv/gpu512_9.csv");
 
-  int print_len = min(MAX_PRINT_LEN, dset->rows());
+  int print_len = std::min(MAX_PRINT_LEN,(int) dset->rows());
 
   dset->L2_normalize(); // features must be L2-normalized before using cosine distance
 

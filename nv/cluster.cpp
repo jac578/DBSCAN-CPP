@@ -53,7 +53,7 @@ void pushToVec(std::vector<float>&obj,const char *param,const std::string& token
     }  
 }  
 
-void Cluster::load_featues(){
+void Cluster::load_features(){
 
      dset->load_features(feat_total);
 }
@@ -84,7 +84,7 @@ int Cluster::load_file_txt(const string& filelist){
         fin2.close();
     }
     fin.close();
-    load_featues();
+    load_features();
 
     return 0;
 }
@@ -101,6 +101,7 @@ void Cluster::fit(){
 }
 
 int Cluster::predict(){
+    cout<<"eps="<<eps<<",num_pts="<<num_pts<<"\n";
     const int num=dbs->predict(eps, num_pts);
     return num;
 }
