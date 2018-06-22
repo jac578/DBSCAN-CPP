@@ -23,13 +23,13 @@ using namespace clustering;
 TEST(DBSCAN_VP_COSINE, TwoClusters)
 {
     Dataset::Ptr dset = Dataset::create();
-    dset->load_csv(CURRENT_TDIR + "/csv/vptree01.csv");
+    dset->load_csv(CURRENT_TDIR + "/gpu512_9.csv");
 
     dset->L2_normalize(); // features must be L2-normalized before using cosine distance
 
     DBSCAN_VP_COSINE::Ptr dbs = boost::make_shared<DBSCAN_VP_COSINE>(dset);
     dbs->fit();
-    dbs->predict(0.01, 5);
+    dbs->predict(0.5, 2);
 
     const DBSCAN_VP_COSINE::Labels &l = dbs->get_labels();
 
@@ -97,7 +97,7 @@ TEST(DBSCAN_VP_COSINE, NoClusters)
 TEST(DBSCAN_VP_COSINE, Iris)
 {
     Dataset::Ptr dset = Dataset::create();
-    dset->load_csv(CURRENT_TDIR + "/csv/iris.data.txt");
+    dset->load_csv(CURRENT_TDIR + "/gpu512_9.csv");
 
     DBSCAN_VP_COSINE::Ptr dbs = boost::make_shared<DBSCAN_VP_COSINE>(dset);
 
@@ -117,7 +117,7 @@ TEST(DBSCAN_VP_COSINE, Iris)
 TEST(DBSCAN_VP_COSINE, IrisAnalyze)
 {
     Dataset::Ptr dset = Dataset::create();
-    dset->load_csv(CURRENT_TDIR + "/csv/iris.data.txt");
+    dset->load_csv(CURRENT_TDIR + "/gpu512_9.csv");
 
     dset->L2_normalize(); // features must be L2-normalized before using cosine distance
 

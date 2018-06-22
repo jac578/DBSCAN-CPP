@@ -20,7 +20,7 @@ static const std::string CURRENT_TDIR(CURRENT_TEST_DIR);
 }
 
 using namespace clustering;
-
+/*
 TEST(GDBSCAN, TwoClusters)
 {
   Dataset::Ptr dset = Dataset::create();
@@ -130,14 +130,14 @@ TEST(GDBSCAN, vsDBSCANvp)
   LOG(INFO) << "CPU numcl " << numcl << " fit " << dbs->get_fit_time()
             << " predict " << dbs->get_predict_time();
 }
-
+*/
 TEST(GDBSCAN, vsDBSCANvp_cosine)
 {
-  const float eps = 0.3;
-  const size_t num_pts = 10;
+  const float eps = 0.5;
+  const size_t num_pts = 2;
 
   Dataset::Ptr dset = Dataset::create();
-  dset->load_csv(CURRENT_TDIR + "/csv/gpu1000.csv");
+  dset->load_csv(CURRENT_TDIR + "/csv/gpu512_9.csv");
 
   dset->L2_normalize(); // features must be L2-normalized before using cosine distance
 

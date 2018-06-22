@@ -188,6 +188,11 @@ class DBSCAN_VP_COSINE : private boost::noncopyable
             }
             ++cluster_id;
         }
+#include<iostream>
+using namespace std;
+                  for(int i=0;i<m_labels.size();++i){
+                        cout<<"label["<<i<<"]="<<m_labels[i]<<"\n";
+                        }
 
         m_predict_time = omp_get_wtime() - start;
 

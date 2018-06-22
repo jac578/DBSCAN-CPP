@@ -15,7 +15,7 @@ set(Boost_USE_STATIC_RUNTIME ON)
 
 # find_package(Boost REQUIRED COMPONENTS program_options python3 numpy3)
 # remove boost.numpy because it's now included in boost.python
-find_package(Boost REQUIRED COMPONENTS program_options python3)
+find_package(Boost REQUIRED COMPONENTS program_options python)
 
 ## for python3.5
 #SET(PYTHON_INCLUDE_PATH /usr/include/python3.5)
@@ -67,23 +67,23 @@ add_library(dbscan dbscan.cpp)
 #add_executable(test_dbscan test_dbscan.cpp)
 #target_link_libraries(test_dbscan dbscan)
 
-if (PYTHONLIBS_FOUND AND Boost_FOUND)	
-	include_directories( 
-		${PYTHON_INCLUDE_PATH} 
-	)
-	         
-	ADD_LIBRARY(pydbscan SHARED PyDBSCAN.cpp)
-	target_link_libraries(pydbscan dbscan glog boost_python3 boost_numpy3)
-
-	SET_TARGET_PROPERTIES(pydbscan
-		PROPERTIES
-		    MAJOR_VERSION 1
-		    MINOR_VERSION 0
-		        LIBRARY_OUTPUT_NAME pydbscan
-		        PREFIX ""
-	)
-
-endif(PYTHONLIBS_FOUND AND Boost_FOUND)
+#if (PYTHONLIBS_FOUND AND Boost_FOUND)	
+#	include_directories( 
+#		${PYTHON_INCLUDE_PATH} 
+#	)
+#	         
+#	ADD_LIBRARY(pydbscan SHARED PyDBSCAN.cpp)
+#	target_link_libraries(pydbscan dbscan glog boost_python3 boost_numpy3)
+#
+#	SET_TARGET_PROPERTIES(pydbscan
+#		PROPERTIES
+#		    MAJOR_VERSION 1
+#		    MINOR_VERSION 0
+#		        LIBRARY_OUTPUT_NAME pydbscan
+#		        PREFIX ""
+#	)
+#
+#endif(PYTHONLIBS_FOUND AND Boost_FOUND)
 
 # add_executable(vptree main_vptree.cpp)
 

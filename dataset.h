@@ -185,6 +185,8 @@ class Dataset : private boost::noncopyable
             {
                 double scale = 1.0f / norm;
                 e *= scale;
+       #include<stdio.h>
+	    printf("norm=%.lf\n",norm);
             }
         }
     }

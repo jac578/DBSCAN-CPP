@@ -341,6 +341,12 @@ GDBSCAN::predict()
     breadth_first_search(static_cast<int>(i), cluster, visited);
     cluster += 1;
   }
+#include<iostream>
+using namespace std;
+
+ for(int i=0;i<labels.size() ;++i){
+ cout<<"labels["<<i<<"]="<<labels[i]<<"\n";
+ }
 
   m_predict_time = omp_get_wtime() - start;
 
