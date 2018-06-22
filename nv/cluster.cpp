@@ -60,14 +60,14 @@ void Cluster::load_features(){
 
 
 int Cluster::load_file_txt(const string& filelist){
-    cout<<"image list="<<filelist<<"\n";
+    cout<<"file list="<<filelist<<"\n";
     ifstream fin(filelist);
     if(!fin){
         cout<<filelist<<" not exist,exit...\n";
         return  -1;
     }
     string str_name("");
-    const string token(",");
+    const string token(" ");
     while(getline(fin,str_name)){  
         ifstream fin2(str_name);
         if(!fin2){
