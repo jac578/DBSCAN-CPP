@@ -3,6 +3,8 @@
 
 using namespace clustering;
 
+
+
 int main()
 {
     std::cout << "Generating data.." << std::endl;
