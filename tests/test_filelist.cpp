@@ -8,7 +8,7 @@ using namespace clustering;
 
 int main(){
 
-    const string filelist="../tests/txt/feat_filelist.txt";
+    const string filelist="../tests/feats_bin/feat_filelist.txt";
     const float eps=0.5;
     const int num_pts=2;
     vector<int> labels;
@@ -19,7 +19,7 @@ int main(){
     cluster.predict();
     cluster.get_labels(labels);
     for(int i=0;i<labels.size();++i){
-        std::cout << "Element = " << i << " cluster = " << labels[i]<<"\n";
+        std::cout << "Element = " << i << ", cluster = " << labels[i]<<"\n";
     }
     // dset->load_features(cluster.feat_total);
     // dset->L2_normalize();
