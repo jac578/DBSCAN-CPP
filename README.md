@@ -1,10 +1,8 @@
-DBSCAN
-======
 
-dbscan.h - DBSCAN C++ Boost OpenMP implementation
 
-dbscan_vp.h - DBSCAN vp tree kNN implementation using Eigen https://en.wikipedia.org/wiki/Vantage-point_tree
+usage:
+cd build/
+cmake ..
+make 
 
-vp tree DBSCAN benchmark Intel(R) Xeon(R) CPU E5-2690 v2 @ 3.00GHz
-
-![DBSCAN vptree benchmark](newplot.png?raw=true)
+.bin/test_filelist  --feat-list ../tests/feats_bin_v3/feat_filelist.txt  --image-list ../tests/imgs_aligned_112x112/img_filelist.txt --save-root ./cluster_result/  --eps 0.5 --num_pts 2
