@@ -27,13 +27,13 @@ T str2num(const string& str_value){
 }
 
 int main(int argc,char** argv){
-    string filelist="../tests/feats_bin_v3/feat_filelist.txt"; // "../tests/feats_bin/feat_filelist.txt";
-    string imagelist="../tests/imgs_aligned_112x112/img_filelist.txt";
-    string root="./cluster_result/";
+    string filelist="";//"../tests/feats_bin_v3/feat_filelist.txt"; // "../tests/feats_bin/feat_filelist.txt";
+    string imagelist="";//"../tests/imgs_aligned_112x112/img_filelist.txt";
+    string root="";//"./cluster_result/";
     float eps=0.5;
     int num_pts=2;
     if (argc>2){
-    for (int i=2;  i<argc; i+=2)
+    for (int i=1; i<argc; i+=2)
     {
       cout << "argv[" << i << "]: " << argv[i]  << endl;
       string t_str(argv[i]);
@@ -59,7 +59,7 @@ int main(int argc,char** argv){
        }
     }
   }
- 
+    cout<<"filelist="<<filelist<<",imagelist="<<imagelist<<",root="<<root<<",eps="<<eps<<",num_pts="<<num_pts<<"\n";
     vector<int> labels;
     // Dataset::Ptr dset = Dataset::create();
     Cluster cluster(eps,num_pts);
