@@ -11,7 +11,9 @@ class DBSCAN_VP_COSINE : private boost::noncopyable
   private:
     static inline double dist(const Eigen::VectorXf &p1, const Eigen::VectorXf &p2)
     {
-        return 1.0f - p1.dot(p2);
+	const double temp=1.0f - p1.dot(p2);
+//	printf("dist_=%lf\n",temp);
+        return temp;
     }
 
     const Dataset::Ptr m_dset;

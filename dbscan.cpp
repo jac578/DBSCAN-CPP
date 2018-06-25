@@ -314,10 +314,23 @@ void DBSCAN::wfit(const DBSCAN::ClusterData &C, const DBSCAN::FeaturesWeights &W
     if (dist_type == 1)
     {
         D = calc_cosine_dist_matrix(C, W, do_norm);
+  /*  #include<stdio.h>
+    printf("dist_type=",dist_type);
+     for(int i=0;i<D.size1();++i)
+        for(int k=0;k<D.size1();++k){
+            printf("dist=%lf\n",D(i,k));
+        }
+ */
     }
     else
     {
         D = calc_dist_matrix(C, W, do_norm);
+/*	 #include<stdio.h>
+     for(int i=0;i<D.size1();++i)
+        for(int k=0;k<D.size1();++k){
+            printf("dist=%lf\n",D(i,k));  
+      }
+*/
     }
 
     dbscan(D);

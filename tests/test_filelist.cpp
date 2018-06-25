@@ -8,7 +8,7 @@ using namespace clustering;
 
 int main(){
 
-    const string filelist="../tests/feats_bin/feat_filelist.txt";
+    const string filelist="../tests/feats_bin_v3/feat_filelist.txt"; // "../tests/feats_bin/feat_filelist.txt";
     const float eps=0.5;
     const int num_pts=2;
     vector<int> labels;
