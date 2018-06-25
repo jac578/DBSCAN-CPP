@@ -2,11 +2,12 @@
 // #include "dbscan_vp_cosine.h"
 #include<string>
 #include<iostream>
-#include<direct.h>
+#include<dirent.h>
 #include<unistd.h>
-
+#include<fstream>
+#include <sys/stat.h>
 using namespace clustering;
-<template T>
+template<class T>
 string int2str(const T value){
     string str;
     stringstream ss;
@@ -15,11 +16,50 @@ string int2str(const T value){
     return str;
 }
 
-int main(){
-    const string filelist="../tests/feats_bin_v3/feat_filelist.txt"; // "../tests/feats_bin/feat_filelist.txt";
-    const string imagelist="../tests/imgs_aligned_112x112/img_filelist.txt"
-    const float eps=0.5;
-    const int num_pts=2;
+
+template<class T>
+T str2num(const string& str_value){
+    T value;
+    stringstream ss;
+    ss<<str_value;
+    ss>>value;
+    return value;
+}
+
+int main(int argc,char** argv){
+    string filelist="../tests/feats_bin_v3/feat_filelist.txt"; // "../tests/feats_bin/feat_filelist.txt";
+    string imagelist="../tests/imgs_aligned_112x112/img_filelist.txt";
+    string root="./cluster_result/";
+    float eps=0.5;
+    int num_pts=2;
+    if (argc>2){
+    for (int i=2;  i<argc; i+=2)
+    {
+      cout << "argv[" << i << "]: " << argv[i]  << endl;
+      string t_str(argv[i]);
+      if (t_str=="--feat-list")
+      {
+        filelist = argv[i+1];
+      }
+      else if (t_str=="--image-list")
+       {
+        imagelist = argv[i+1];
+       }
+      else if (t_str=="--save-root")
+       {
+        root = argv[i+1];
+       }
+      else if (t_str=="--eps")
+       {
+        eps = str2num<float>(argv[i+1]);
+       }
+      else if (t_str=="--num_pts")
+       {
+        num_pts = str2num<int>(argv[i+1]);
+       }
+    }
+  }
+ 
     vector<int> labels;
     // Dataset::Ptr dset = Dataset::create();
     Cluster cluster(eps,num_pts);
@@ -31,37 +71,40 @@ int main(){
         std::cout << "Element = " << i << ", cluster = " << labels[i]<<"\n";
     }
     // image clustering
-    const string root="./cluster_result/";
     DIR *dir;   
     if((dir=opendir(root.c_str())) == NULL){   
-        _mkdir(root);      //system( s.c_str() );
+        mkdir(root.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);      //system( s.c_str() );
     }   
-    fstrem fin(imagelist);
+    ifstream fin(imagelist);
     string str_line="";
-    int num=0;
+    int num=-1;
+    string path("");
     while(getline(fin,str_line)){
-        if(num++==0){
+        if(++num==0){
             const int index1=str_line.rfind("/");
             const int index2=str_line.substr(0,index1).rfind("/");
-            const string folder=str_line.substr(index2,index1);
-            cou<<"floder="<<folder<<"\n";
-        
-            cosnt string path=root+folder;
+	    const string substr=str_line.substr(0,index1);
+             const string folder=substr.substr(substr.rfind("/")+1,substr.size());
+	    cout<<"substr="<<str_line.substr(0,index1)<<"\n";
+	    cout<<"floder="<<folder<<"\n";
+            cout<<"index1="<<index1<<",index2="<<index2<<"\n";       
+            path=root+folder;
             if((dir=opendir(path.c_str())) == NULL){   
-                mkdir(path); 
+                mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); 
             } 
-            for( int i=0;i<label.size(); ++i){
-                const string cluster_num_folder("");
-                cluster_num_folder=path+"/"+int2str(label[i]);
+            for( int i=0;i<labels.size(); ++i){
+                string cluster_num_folder("");
+                cluster_num_folder=path+"/"+int2str(labels[i]);
                 if((dir=opendir(cluster_num_folder.c_str())) == NULL){   
-                    mkdir(cluster_num_folder); 
+                    mkdir(cluster_num_folder.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); 
                 } 
             } 
         }
          // copy images to the folder
-         const string str_copy_op="cp -r " + str_line + " "+ path + "/" + int2str(label[num]);
+         const string str_copy_op="cp -r " + str_line + " "+ path + "/" + int2str(labels[num]);
          cout<<"copy op:"<<str_copy_op<<"\n";
-         system( str_copy_op.c_str() );
+         cout<<"num="<<num<<"\n" ;
+ 	 system( str_copy_op.c_str() );
    
     }
     fin.close();

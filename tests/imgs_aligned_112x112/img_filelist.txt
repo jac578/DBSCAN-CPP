@@ -1,8 +1,9 @@
-../tests/imags_aligned_112x112/1_1_0.png
-../tests/imags_aligned_112x112/1_2_0.png
-../tests/imags_aligned_112x112/1_3_0.png
-../tests/imags_aligned_112x112/3_1_0.png
-../tests/imags_aligned_112x112/3_4_0.png
-../tests/imags_aligned_112x112/2_6_0.png
-../tests/imags_aligned_112x112/4_1_0.png
-../tests/imags_aligned_112x112/3_4_0.png
+../tests/imgs_aligned_112x112/1_1_0.png
+../tests/imgs_aligned_112x112/1_2_0.png
+../tests/imgs_aligned_112x112/1_3_0.png
+../tests/imgs_aligned_112x112/2_1_0.png
+../tests/imgs_aligned_112x112/2_4_0.png
+../tests/imgs_aligned_112x112/2_6_0.png
+../tests/imgs_aligned_112x112/3_1_0.png
+../tests/imgs_aligned_112x112/3_2_0.png
+../tests/imgs_aligned_112x112/3_3_0.png
